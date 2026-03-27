@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div class="page-header-left">
+        <h1 class="page-title">Aniversariantes</h1>
+        <p class="page-date">
+            Hoje é <strong>{{ hoje.strftime('%d/%m/%Y') }}</strong>
+            {% set dia_semana = ['Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado','Domingo'] %}
+            &mdash; {{ dia_semana[hoje.weekday()] }}
+        </p>
+    </div>
+
+    <div class="page-header-right">
+        <!-- FILTRO DE MÊS -->
+        <div class="filter-group">
+            <label for="mes-select" class="filter-label">Filtrar por mês:</label>
+            <select
+                id="mes-select"
+                class="select-mes"
+                hx-get="/table"
+                hx-target="#tabela-container"
+                hx-swap="innerHTML"
+                hx-include="[name='mes']"
+                onchange="updateMes(this.value)"
+            >
+                {% for i in range(1, 13) %}
+                <option value="{{ i }}" {% if i == mes_atual %}selected{% endif %}>
+                    {{ meses[i-1] }}
+                </option>
+                {% endfor %}
+            </select>
+            <!-- campo hidden que acompanha todos os forms -->
+            <input type="hidden" name="mes" id="mes-hidden" value="{{ mes_atual }}" />
+        </div>
+
+        <!-- BOTÃO NOVO ANIVERSÁRIO -->
+        <button
+            class="btn btn-primary"
+            onclick="openAddModal()"
+        >
+            + Novo Aniversário
+        </button>
+    </div>
+</div>
+
+<!-- TABELA (renderizada via partial) -->
+<div id="tabela-container">
+    {% include "partials/table.html" %}
+</div>
+
+<!-- TEMPLATE DO FORM DE ADIÇÃO (injetado no modal via JS) -->
+<template id="form-add-template">
+    <div class="modal-form-title">Novo Aniversário</div>
+    <form
+        hx-post="/aniversarios"
+        hx-target="#tabela-container"
+        hx-swap="innerHTML"
+        hx-on::after-request="closeModal()"
+        class="modal-form"
+    >
+        <input type="hidden" name="mes" id="form-add-mes" value="{{ mes_atual }}" />
+
+        <div class="form-group">
+            <label class="form-label">Nome *</label>
+            <input type="text" name="nome" class="form-input" placeholder="Nome completo" required />
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Data de Aniversário *</label>
+            <input type="date" name="data_aniversario" class="form-input" required />
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Vínculo / Parentesco *</label>
+            <select name="vinculo" class="form-input" required>
+                <option value="">Selecione...</option>
+                {% for v in vinculos %}
+                <option value="{{ v }}">{{ v }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Telefone (WhatsApp)</label>
+            <input type="tel" name="telefone" class="form-input" placeholder="Ex: 5511999999999" />
+            <small class="form-hint">Código do país + DDD + número (sem espaços)</small>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </form>
+</template>
+{% endblock %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InovaNiver – Aniversários</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
+</head>
+<body>
+
+    <!-- HEADER FIXO -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="header-logo">
+                <img src="/static/images/logo.png" alt="InovaMind" class="logo-img" />
+            </a>
+            <span class="header-title">Sistema de Aniversários</span>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- MODAL OVERLAY -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

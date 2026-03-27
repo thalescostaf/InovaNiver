@@ -1,0 +1,59 @@
+<div class="modal-form-title">Editar Aniversário</div>
+<form
+    hx-put="/aniversarios/{{ aniversario.id }}"
+    hx-target="#tabela-container"
+    hx-swap="innerHTML"
+    hx-on::after-request="closeModal()"
+    class="modal-form"
+>
+    <input type="hidden" name="mes" value="{{ mes_atual }}" />
+
+    <div class="form-group">
+        <label class="form-label">Nome *</label>
+        <input
+            type="text"
+            name="nome"
+            class="form-input"
+            value="{{ aniversario.nome }}"
+            required
+        />
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Data de Aniversário *</label>
+        <input
+            type="date"
+            name="data_aniversario"
+            class="form-input"
+            value="{{ aniversario.data_aniversario.strftime('%Y-%m-%d') }}"
+            required
+        />
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Vínculo / Parentesco *</label>
+        <select name="vinculo" class="form-input" required>
+            <option value="">Selecione...</option>
+            {% for v in vinculos %}
+            <option value="{{ v }}" {% if v == aniversario.vinculo %}selected{% endif %}>{{ v }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Telefone (WhatsApp)</label>
+        <input
+            type="tel"
+            name="telefone"
+            class="form-input"
+            value="{{ aniversario.telefone or '' }}"
+            placeholder="Ex: 5511999999999"
+        />
+        <small class="form-hint">Código do país + DDD + número (sem espaços)</small>
+    </div>
+
+    <div class="form-actions">
+        <button type="button" class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Salvar alterações</button>
+    </div>
+</form>
