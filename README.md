@@ -1,11 +1,7 @@
-<p align="center">
-  <img src="static/images/logo.png" alt="InovaMind" width="260" />
-</p>
-
 <h1 align="center">InovaNiver</h1>
 
 <p align="center">
-  Sistema de registro e notificação de aniversários da <strong>InovaMind</strong>
+  Sistema de registro e notificação de aniversários da <strong>Inovamind</strong>
 </p>
 
 <p align="center">
@@ -35,7 +31,7 @@ A aplicação exibe os aniversariantes do mês corrente, destaca quem faz aniver
 | Enviar parabéns | Abre o WhatsApp Web com mensagem pré-preenchida (quando há telefone) ou copia a mensagem |
 | Controle de envio | Toggle "Enviado" por aniversariante |
 | CRUD completo | Adicionar, editar e excluir sem sair da página (modal + HTMX) |
-| Header fixo | Logo InovaMind visível em toda a navegação |
+| Header fixo | Logo Inovamind visível em toda a navegação |
 
 ---
 
@@ -50,7 +46,7 @@ A aplicação exibe os aniversariantes do mês corrente, destaca quem faz aniver
 | Banco de dados | PostgreSQL 14+ |
 | Templates | Jinja2 (server-side rendering) |
 | Interatividade | [HTMX 2](https://htmx.org/) |
-| Estilo | CSS puro (identidade visual InovaMind) |
+| Estilo | CSS puro (identidade visual Inovamind) |
 
 ---
 
@@ -118,7 +114,7 @@ uv sync
 
 ### 4. Adicione a logo
 
-Salve o arquivo da logo InovaMind em:
+Salve o arquivo da logo Inovamind em:
 
 ```
 static/images/logo.png
@@ -163,25 +159,26 @@ InovaNiver/
 │       ├── table.html          # Tabela de aniversariantes (HTMX)
 │       └── modal_form.html     # Formulário de edição (HTMX)
 └── static/
-    ├── css/style.css           # Estilos (identidade InovaMind)
+    ├── css/style.css           # Estilos (identidade Inovamind)
     ├── js/app.js               # Modal, toast e clipboard
     └── images/
-        └── logo.png            # Logo InovaMind (adicionar manualmente)
+        └── logo.png            # Logo Inovamind (adicionar manualmente)
 ```
 
 ---
 
-## Paleta de cores
-
-| Nome | HEX | Uso |
-|---|---|---|
-| Electric Blue | `#012169` | Header, títulos, botões primários |
-| Cloud Blue | `#009cde` | Botões de ação, destaques, foco |
-| Black | `#000000` | Texto base |
-| White | `#ffffff` | Fundos, texto sobre azul |
-
----
-
 <p align="center">
-  Desenvolvido com ❤ por <strong>InovaMind</strong>
+  Desenvolvido por 
+  <strong>
+    <a href="https://thalesfernandes.dev" target="_blank">
+      Thales Fernandes
+    </a>
+  </strong>
+  com 
+  <strong>
+    <a href="https://inovamind.dev" target="_blank">
+      INOVAMIND
+    </a>
+  </strong>
+
 </p>
